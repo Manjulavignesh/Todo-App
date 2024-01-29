@@ -2,9 +2,17 @@ import TodoList from "@/components/TodoList";
 import { MongoClient } from "mongodb";
 
 function Homepage(props) {
+  async function EditTododHandler(editedData){
+    const response = await fetch("/api/index", {
+      method: "PUT",
+      body: JSON.stringify(editedData),
+      headers: { "content-type": "application/json" },
+    });
+    console.log(response);
+  };
   return (
     <>
-      <TodoList todos={props.todos} />
+      <TodoList todos={props.todos}onEditTodos={EditTododHandler} />
     </>
   );
 }

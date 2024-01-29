@@ -1,13 +1,13 @@
-import { useRef} from "react";
-import {useRouter} from "next/router";
+import { useRef } from "react";
+import { useRouter } from "next/router";
 const AddtodoForm = (props) => {
-    const router=useRouter();
+  const router = useRouter();
   const todos = useRef();
   const submitHandler = (e) => {
     e.preventDefault();
-    const data = todos.current.value;
-    router.push("/"+"addForm")
-    props.onAddTodos(data);
+    const tododata = { title: todos.current.value, iscompleted: false };
+    router.push("/" + "addForm");
+    props.onAddTodos(tododata);
   };
   return (
     <form onSubmit={submitHandler}>

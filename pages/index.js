@@ -1,10 +1,10 @@
 import TodoList from "@/components/TodoList";
 import { MongoClient } from "mongodb";
 
-function Homepage() {
+function Homepage(props) {
   return (
     <>
-      <TodoList todos={props.todos}/>
+      <TodoList todos={props.todos} />
     </>
   );
 }
@@ -17,7 +17,11 @@ export async function getStaticProps() {
   const todos = await todoscollection.find().toArray();
   client.close();
   return {
-    props: todos.toString()
-  };
+    props: {todos:todos.map((todo) => ({
+      title: todo.title,
+      iscompleted: todo.iscompleted,
+    })),
+  }
+}
 }
 export default Homepage;

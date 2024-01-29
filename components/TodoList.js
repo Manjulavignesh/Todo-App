@@ -5,12 +5,15 @@ const TodoList = (props) => {
     <>
       <div>
         <h1>Here is your Todo List</h1>
-        {props.todos.map((todo)=>(<TodoItem data={todo}/>))}
+        {props.todos.map((todo) => (
+          <TodoItem title={todo.title} />
+        ))}
         <button>
           <Link
             href="/addForm"
             style={{ textDecoration: "none", color: "black" }}
-          >Add ToDo's
+          >
+            Add ToDo's
           </Link>
         </button>
       </div>
